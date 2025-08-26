@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IAWebPro - Inteligencia Artificial para Emprendedores</title>
+    <meta name="description" content="Soluciones avanzadas de IA para impulsar tu negocio. Asistentes virtuales, desarrollo web con IA, análisis de datos y marketing predictivo.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'gray': {
+                            800: '#1f2937',
+                            900: '#111827'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        
+        .hero-slide {
+            transition: opacity 1s ease-in-out;
+        }
+        
+        .mobile-menu {
+            backdrop-filter: blur(10px);
+        }
+        
+        .service-card {
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-8px);
+        }
+        
+        .slide-indicator {
+            transition: all 0.3s ease;
+        }
+        
+        .slide-indicator.active {
+            width: 2rem;
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 0.1;
+            }
+            50% {
+                opacity: 0.3;
+            }
+        }
+        
+        .animate-pulse-custom {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white min-h-screen">
+    <!-- Top Bar -->
+    <header class="sticky top-0 z-50 bg-gray-900 border-b border-gray-800">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center">
+                <div class="h-10 w-10 relative overflow-hidden">
+                    <img src="iawebpro_logo_option1.png" alt="IAWebPro Logo" class="w-full h-full object-contain">
+                </div>
+                <span class="ml-2 text-xl font-bold">
+                    <span class="text-white">IAWeb</span>
+                    <span class="text-cyan-400">Pro</span>
+                </span>
+            </div>
+
+            <!-- Desktop Menu -->
+            <nav class="hidden md:flex items-center space-x-8">
+                <a href="#servicios" class="text-gray-300 hover:text-white transition-colors">Servicios</a>
+                <a href="#tecnologia" class="text-gray-300 hover:text-white transition-colors">Tecnología</a>
+                <a href="#precios" class="text-gray-300 hover:text-white transition-colors">Precios</a>
+                <a href="#contacto" class="text-gray-300 hover:text-white transition-colors">Contacto</a>
+            </nav>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-gray-300 hover:text-white">
+                <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="fixed inset-0 z-50 bg-gray-900 bg-opacity-95 mobile-menu flex flex-col hidden">
+        <div class="flex justify-end p-4">
+            <button id="mobile-menu-close">
+                <svg class="h-6 w-6 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+        <nav class="flex flex-col items-center justify-center space-y-8 flex-grow">
+            <a href="#servicios" class="text-xl text-gray-300 hover:text-white transition-colors mobile-menu-link">Servicios</a>
+            <a href="#tecnologia" class="text-xl text-gray-300 hover:text-white transition-colors mobile-menu-link">Tecnología</a>
+            <a href="#precios" class="text-xl text-gray-300 hover:text-white transition-colors mobile-menu-link">Precios</a>
+            <a href="#contacto" class="text-xl text-gray-300 hover:text-white transition-colors mobile-menu-link">Contacto</a>
+        </nav>
+    </div>
+
+    <main class="flex-grow">
+        <!-- Hero Section -->
+        <section class="relative overflow-hidden">
+            <div class="absolute inset-0 z-0">
+                <div class="absolute inset-0 bg-gray-900 opacity-80"></div>
+                <div class="absolute inset-0 opacity-5">
+                    <div class="absolute top-1/4 left-1/4 w-1/2 h-1/2 bg-contain bg-no-repeat bg-center" 
+                         style="background-image: url('iawebpro_logo_option1.png'); transform: scale(2.5)">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slides Container -->
+            <div class="relative z-10 container mx-auto px-4 py-20 md:py-32">
+                <!-- Slide 1 -->
+                <div id="slide-0" class="hero-slide absolute inset-0 flex flex-col justify-center items-center text-center p-4 opacity-100">
+                    <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-blue-600 to-cyan-400 opacity-10 rounded-3xl blur-3xl -z-10"></div>
+                    <h1 class="text-4xl md:text-6xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-white via-gray-100 to-gray-300">
+                        Inteligencia Artificial para Emprendedores
+                    </h1>
+                    <p class="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl">
+                        Soluciones avanzadas de IA para impulsar tu negocio
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button class="bg-gradient-to-r from-blue-500 to-cyan-400 px-8 py-3 rounded-md font-medium hover:opacity-90 transition-opacity">
+                            Empezar Ahora
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Slide 2 -->
+                <div id="slide-1" class="hero-slide absolute inset-0 flex flex-col justify-center items-center text-center p-4 opacity-0">
+                    <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-blue-500 to-cyan-500 opacity-10 rounded-3xl blur-3xl -z-10"></div>
+                    <h1 class="text-4xl md:text-6xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-white via-gray-100 to-gray-300">
+                        Automatización de Procesos
+                    </h1>
+                    <p class="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl">
+                        Optimiza tus flujos de trabajo con nuestras soluciones de IA
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button class="bg-gradient-to-r from-blue-500 to-cyan-400 px-8 py-3 rounded-md font-medium hover:opacity-90 transition-opacity">
+                            Empezar Ahora
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Slide 3 -->
+                <div id="slide-2" class="hero-slide absolute inset-0 flex flex-col justify-center items-center text-center p-4 opacity-0">
+                    <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-cyan-500 to-blue-600 opacity-10 rounded-3xl blur-3xl -z-10"></div>
+                    <h1 class="text-4xl md:text-6xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-white via-gray-100 to-gray-300">
+                        Web Moderna y Rápida con IA
+                    </h1>
+                    <p class="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl">
+                        Sitios web con inteligencia artificial integrada para mejor experiencia
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button class="bg-gradient-to-r from-blue-500 to-cyan-400 px-8 py-3 rounded-md font-medium hover:opacity-90 transition-opacity">
+                            Empezar Ahora
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Slide indicators -->
+                <div class="absolute bottom-8 left-0 right-0 flex justify-center gap-2">
+                    <button class="slide-indicator w-3 h-3 rounded-full bg-cyan-400 w-8 active" data-slide="0"></button>
+                    <button class="slide-indicator w-3 h-3 rounded-full bg-gray-600 hover:bg-gray-500" data-slide="1"></button>
+                    <button class="slide-indicator w-3 h-3 rounded-full bg-gray-600 hover:bg-gray-500" data-slide="2"></button>
+                </div>
+
+                <!-- Hero main content height spacer -->
+                <div class="h-80 md:h-96"></div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="servicios" class="py-20 relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-b from-gray-900 to-gray-800 -z-10"></div>
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Nuestros Servicios de IA</h2>
+                    <p class="text-gray-400 max-w-2xl mx-auto">
+                        Impulsamos el crecimiento de tu negocio con soluciones de inteligencia artificial de vanguardia.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Service 1 -->
+                    <div class="service-card bg-gray-800 bg-opacity-50 border border-gray-700 rounded-xl p-6">
+                        <div class="mb-4">
+                            <svg class="w-12 h-12 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0-9v9m0 9c-5 0-9-4-9-9s4-9 9-9"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">Página Web Inteligente</h3>
+                        <p class="text-gray-400">Creación de página con diseños profesionales. Optimizada con chat de IA que responde preguntas de clientes.</p>
+                    </div>
+
+                    <!-- Service 2 -->
+                    <div class="service-card bg-gray-800 bg-opacity-50 border border-gray-700 rounded-xl p-6">
+                        <div class="mb-4">
+                            <svg class="w-12 h-12 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">Atención Automática WhatsApp/Telegram</h3>
+                        <p class="text-gray-400">Chatbot que responde consultas frecuentes, agenda citas, envía precios y toma pedidos las 24/7 sin intervención humana.</p>
+                    </div>
+
+                    <!-- Service 3 -->
+                    <div class="service-card bg-gray-800 bg-opacity-50 border border-gray-700 rounded-xl p-6">
+                        <div class="mb-4">
+                            <svg class="w-12 h-12 text-cyan-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">Asistente de Marketing con IA</h3>
+                        <p class="text-gray-400">Creación automática de posts para Instagram/TikTok. Redacción de emails, catálogos y descripciones de productos con IA.</p>
+                    </div>
+
+                    <!-- Service 4 -->
+                    <div class="service-card bg-gray-800 bg-opacity-50 border border-gray-700 rounded-xl p-6">
+                        <div class="mb-4">
+                            <svg class="w-12 h-12 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">Organización y Productividad</h3>
+                        <p class="text-gray-400">Agentes que ordenan tu base de clientes, generan reportes automáticos de ventas, recordatorios y seguimiento inteligente.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technology Section -->
+        <section id="tecnologia" class="py-20 relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-b from-gray-800 to-gray-900 -z-10"></div>
+            
+            <div class="container mx-auto px-4">
+                <div class="flex flex-col lg:flex-row items-center gap-12">
+                    <div class="lg:w-1/2">
+                        <h2 class="text-3xl md:text-4xl font-bold mb-6">Potencia Tu Emprendimiento con IA</h2>
+                        <p class="text-gray-300 mb-8">
+                            Automatizamos y optimizamos los procesos clave de tu negocio con tecnología de inteligencia artificial, para que te concentres en crecer.
+                        </p>
+                        
+                        <div class="space-y-4">
+                            <div class="flex items-start gap-3">
+                                <div class="mt-1 bg-blue-500 bg-opacity-20 p-2 rounded-full">
+                                    <svg class="h-5 w-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-lg">Webs Inteligentes y Autogestionables</h3>
+                                    <p class="text-gray-400">Creamos tu página web o landing page de forma rápida y simple, optimizada con chatbots de IA que responden consultas, agendan citas y toman pedidos las 24/7.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start gap-3">
+                                <div class="mt-1 bg-cyan-500 bg-opacity-20 p-2 rounded-full">
+                                    <svg class="h-5 w-5 text-cyan-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-lg">Asistente de Marketing Autónomo</h3>
+                                    <p class="text-gray-400">Delega la creación de contenido. Nuestra IA genera posts para redes sociales, redacta emails persuasivos y crea descripciones de productos irresistibles.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start gap-3">
+                                <div class="mt-1 bg-blue-400 bg-opacity-20 p-2 rounded-full">
+                                    <svg class="h-5 w-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 6h6m-6 2h6m-6 2h6"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-lg">Sistema Inteligente de Gestión</h3>
+                                    <p class="text-gray-400">Agentes de IA que organizan tu base de clientes, envían recordatorios automáticos por WhatsApp/Telegram y hacen seguimiento inteligente de tus leads.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button class="mt-8 bg-gradient-to-r from-blue-500 to-cyan-400 px-6 py-3 rounded-md font-medium hover:opacity-90 transition-opacity inline-flex items-center">
+                            Explorar Tecnología
+                            <svg class="ml-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    
+                    <div class="lg:w-1/2 relative">
+                        <div class="relative aspect-square max-w-md mx-auto">
+                            <div class="absolute inset-0 bg-gradient-to-br from-blue-500 to-cyan-400 rounded-full opacity-10 animate-pulse-custom"></div>
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <div class="w-3/4 h-3/4 relative bg-gray-800 bg-opacity-30 rounded-full border-2 border-cyan-400 border-opacity-30 p-8 backdrop-blur-sm">
+                                    <img src="iawebpro_logo_option1.png" alt="IAWebPro Logo" class="w-full h-full object-contain rounded-full">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing Section -->
+        <section id="precios" class="py-20 relative">
+            <div class="absolute inset-0 bg-gradient-to-b from-gray-900 to-gray-800 -z-10"></div>
+            
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Elige Tu Plan Ideal</h2>
+                    <p class="text-gray-400 max-w-2xl mx-auto">
+                        Desde tu primer paso hasta la automatización total. Todos los planes incluyen soporte y actualizaciones.
+                    </p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                    <!-- Plan 1: Web Autónoma -->
+                    <div class="relative rounded-xl overflow-hidden border border-gray-700">
+                        <div class="p-6 bg-gray-800 bg-opacity-50 h-full flex flex-col">
+                            <div class="text-center mb-4">
+                                <h3 class="text-xl font-bold mb-1">Web Autónoma</h3>
+                                <p class="text-sm text-cyan-400 font-medium">Tu Trampolín</p>
+                            </div>
+                            <div class="text-center mb-6">
+                                <div class="mb-2">
+                                    <span class="text-3xl font-bold">$49</span>
+                                    <span class="text-gray-400">/mes</span>
+                                </div>
+                                <div class="text-sm text-green-400">
+                                    <span class="font-semibold">$499/año</span> - ¡Mejor opción!
+                                </div>
+                            </div>
+                            
+                            <ul class="space-y-2 mb-6 flex-grow text-sm">
+                                <li class="flex items-start gap-2">
+                                    <svg class="h-4 w-4 text-cyan-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    <span class="text-gray-300">Landing Page de 1 página moderna</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <svg class="h-4 w-4 text-cyan-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    <span class="text-gray-300">Chatbot IA: hasta 5 preguntas</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <svg class="h-4 w-4 text-cyan-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    <span class="text-gray-300">Integración básica WhatsApp</span>
+                                </li>
+                            </ul>
+                            
+                            <div class="text-center mb-4">
+                                <p class="text-xs text-yellow-400 font-semibold">
+                                    ¡Prueba la IA sin riesgo!
+                                </p>
+                            </div>
+                            
+                            <button class="payment-btn w-full py-3 rounded-md font-medium transition-colors bg-gray-700 hover:bg-gray-600 text-white" data-plan="web-autonoma" data-price-monthly="49" data-price-yearly="499">
+                                Empezar Ahora
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Plan 2: Automático Pro - MÁS POPULAR -->
+                    <div class="relative rounded-xl overflow-hidden border-2 border-cyan-400 transform md:-translate-y-4">
+                        <div class="absolute top-0 left-0 right-0 bg-gradient-to-r from-blue-500 to-cyan-400 text-center py-2 text-sm font-bold">
+                            🏆 PLAN ESTRELLA - MÁS POPULAR
+                        </div>
+                        
+                        <div class="p-6 pt-10 bg-gray-800 bg-opacity-50 h-full flex flex-col">
+                            <div class="text-center mb-4">
+                                <h3 class="text-xl font-bold mb-1">Automático Pro</h3>
+                                <p class="text-sm text-cyan-400 font-medium">🏆 Tu Plan Estrella</p>
+                            </div>
+                            <div class="text-center mb-6">
+                                <div class="mb-2">
+                                    <span class="text-3xl font-bold">$97</span>
+                                    <span class="text-gray-400">/mes</span>
+                                </div>
+                                <div class="text-sm text-green-400">
+                                    <span class="font-semibold">$997/año</span> - ¡Ahorra 2 meses!
+                                </div>
+                            </div>
+                            
+                            <ul class="space-y-2 mb-6 flex-grow text-sm">
+                                <li class="flex items-start gap-2">
+                                    <svg class="h-4 w-4 text-cyan-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    <span class="text-gray-300">Todo del plan anterior +</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <svg class="h-4 w-4 text-cyan-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    <span class="text-gray-300">Landing con testimonios y galería</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <svg class="h-4 w-4 text-cyan-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    <span class="text-gray-300">Chatbot: agenda citas y toma pedidos</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <svg class="h-4 w-4 text-cyan-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    <span class="text-gray-300">10 posts redes sociales/mes</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <svg class="h-4 w-4 text-cyan-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    <span class="text-gray-300">2 Emails automáticos</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <svg class="h-4 w-4 text-cyan-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    <span class="text-gray-300">Base datos: hasta 50 clientes</span>
+                                </li>
+                            </ul>
+                            
+                            <div class="text-center mb-4 p-2 bg-yellow-900 bg-opacity-30 rounded-md">
+                                <p class="text-xs text-yellow-300 font-semibold">
+                                    🎉 OFERTA LANZAMIENTO: Configuración inicial GRATIS (valor $150)
+                                </p>
+                            </div>
+                            
+                            <button class="payment-btn w-full py-3 rounded-md font-medium transition-colors bg-gradient-to-r from-blue-500 to-cyan-400 hover:opacity-90" data-plan="automatico-pro" data-price-monthly="97" data-price-yearly="997">
+                                ¡Quiero Crecer Ya!
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Plan 3: Crecimiento Total -->
+                    <div class="relative rounded-xl overflow-hidden border border-gray-700">
+                        <div class="p-6 bg-gray-800 bg-opacity-50 h-full flex flex-col">
+                            <div class="text-center mb-4">
+                                <h3 class="text-xl font-bold mb-1">Crecimiento Total</h3>
+                                <p class="text-sm text-cyan-400 font-medium">Tu Plan Premium</p>
+                            </div>
+                            <div class="text-center mb-6">
+                                <div class="mb-2">
+                                    <span class="text-3xl font-bold">$247</span>
+                                    <span class="text-gray-400">/mes</span>
+                                </div>
+                                <div class="text-sm text-blue-400">
+                                    o <span class="font-semibold">Plan Personalizado</span>
+                                </div>
+                            </div>
+                            
+                            <ul class="space-y-2 mb-8 flex-grow text-sm">
+                                <li class="flex items-start gap-2">
+                                    <svg class="h-4 w-4 text-cyan-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    <span class="text-gray-300">Todo del plan Pro +</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <svg class="h-4 w-4 text-cyan-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    <span class="text-gray-300">Sitio web hasta 5 páginas</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <svg class="h-4 w-4 text-cyan-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    <span class="text-gray-300">Chatbot entrenado específicamente</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <svg class="h-4 w-4 text-cyan-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    <span class="text-gray-300">20 posts + 5 emails mensuales</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <svg class="h-4 w-4 text-cyan-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    <span class="text-gray-300">Seguimiento de leads inteligente</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <svg class="h-4 w-4 text-cyan-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    <span class="text-gray-300">Soporte prioritario</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <svg class="h-4 w-4 text-cyan-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    <span class="text-gray-300">1 hora entrenamiento mensual</span>
+                                </li>
+                            </ul>
+                            
+                            <button class="payment-btn w-full py-3 rounded-md font-medium transition-colors bg-gray-700 hover:bg-gray-600 text-white" data-plan="crecimiento-total" data-price-monthly="247" data-price-yearly="custom">
+                                Contactar Ahora
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contacto" class="py-20 relative">
+            <div class="absolute inset-0 bg-gradient-to-b from-gray-800 to-gray-900 -z-10"></div>
+            
+            <div class="container mx-auto px-4">
+                <div class="max-w-4xl mx-auto bg-gray-800 bg-opacity-50 backdrop-blur-sm border border-gray-700 rounded-xl p-8 md:p-12">
+                    <div class="text-center mb-10">
+                        <h2 class="text-3xl font-bold mb-4">¿Listo para Potenciar tu Negocio?</h2>
+                        <p class="text-gray-300">
+                            Contáctanos hoy y descubre cómo la IA puede transformar tu empresa.
+                        </p>
+                    </div>
+                    
+                    <form id="contact-form" class="space-y-6">
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="name" class="block text-sm font-medium text-gray-300 mb-1">Nombre</label>
+                                <input 
+                                    type="text" 
+                                    id="name" 
+                                    name="name"
+                                    class="w-full bg-gray-700 border border-gray-600 rounded-md px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-cyan-400"
+                                    placeholder="Tu nombre"
+                                    required
+                                />
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-300 mb-1">Email</label>
+                                <input 
+                                    type="email" 
+                                    id="email" 
+                                    name="email"
+                                    class="w-full bg-gray-700 border border-gray-600 rounded-md px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-cyan-400"
+                                    placeholder="Tu email"
+                                    required
+                                />
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label for="company" class="block text-sm font-medium text-gray-300 mb-1">Empresa</label>
+                            <input 
+                                type="text" 
+                                id="company" 
+                                name="company"
+                                class="w-full bg-gray-700 border border-gray-600 rounded-md px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-cyan-400"
+                                placeholder="Nombre de tu empresa"
+                            />
+                        </div>
+
+                        <!-- New qualifying questions -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="business-type" class="block text-sm font-medium text-gray-300 mb-1">
+                                    ¿Qué tipo de negocio tienes? <span class="text-red-400">*</span>
+                                </label>
+                                <select 
+                                    id="business-type" 
+                                    name="business-type"
+                                    class="w-full bg-gray-700 border border-gray-600 rounded-md px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-cyan-400"
+                                    required
+                                >
+                                    <option value="">Selecciona tu sector</option>
+                                    <option value="ecommerce">E-commerce / Tienda Online</option>
+                                    <option value="servicios">Servicios Profesionales</option>
+                                    <option value="restaurante">Restaurante / Gastronomía</option>
+                                    <option value="consultoria">Consultoría / Coaching</option>
+                                    <option value="inmobiliaria">Inmobiliaria</option>
+                                    <option value="salud">Salud / Medicina</option>
+                                    <option value="educacion">Educación / Cursos</option>
+                                    <option value="fitness">Fitness / Deporte</option>
+                                    <option value="belleza">Belleza / Estética</option>
+                                    <option value="tecnologia">Tecnología / Software</option>
+                                    <option value="agencia">Agencia / Marketing</option>
+                                    <option value="otro">Otro</option>
+                                </select>
+                            </div>
+                            
+                            <div>
+                                <label for="website-goal" class="block text-sm font-medium text-gray-300 mb-1">
+                                    ¿Qué objetivo quieres con la web? <span class="text-red-400">*</span>
+                                </label>
+                                <select 
+                                    id="website-goal" 
+                                    name="website-goal"
+                                    class="w-full bg-gray-700 border border-gray-600 rounded-md px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-cyan-400"
+                                    required
+                                >
+                                    <option value="">Selecciona tu objetivo</option>
+                                    <option value="vender">Vender productos/servicios online</option>
+                                    <option value="leads">Captar leads y clientes potenciales</option>
+                                    <option value="informacion">Mostrar información de mi negocio</option>
+                                    <option value="reservas">Sistema de reservas/citas</option>
+                                    <option value="catalogo">Catálogo de productos</option>
+                                    <option value="branding">Mejorar imagen de marca</option>
+                                    <option value="portfolio">Portfolio / Mostrar trabajos</option>
+                                    <option value="blog">Blog / Generar contenido</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="budget" class="block text-sm font-medium text-gray-300 mb-1">
+                                    ¿Presupuesto estimado mensual? <span class="text-red-400">*</span>
+                                </label>
+                                <select 
+                                    id="budget" 
+                                    name="budget"
+                                    class="w-full bg-gray-700 border border-gray-600 rounded-md px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-cyan-400"
+                                    required
+                                >
+                                    <option value="">Selecciona tu rango</option>
+                                    <option value="menos-50">Menos de $50/mes</option>
+                                    <option value="50-100">$50 - $100/mes</option>
+                                    <option value="100-200">$100 - $200/mes</option>
+                                    <option value="200-500">$200 - $500/mes</option>
+                                    <option value="mas-500">Más de $500/mes</option>
+                                    <option value="proyecto-unico">Pago único (proyecto)</option>
+                                </select>
+                            </div>
+                            
+                            <div>
+                                <label for="automation" class="block text-sm font-medium text-gray-300 mb-1">
+                                    ¿Quieres integrar chatbots o automatización? <span class="text-red-400">*</span>
+                                </label>
+                                <select 
+                                    id="automation" 
+                                    name="automation"
+                                    class="w-full bg-gray-700 border border-gray-600 rounded-md px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-cyan-400"
+                                    required
+                                >
+                                    <option value="">Selecciona una opción</option>
+                                    <option value="si-completa">Sí, automatización completa</option>
+                                    <option value="si-basica">Sí, solo chatbot básico</option>
+                                    <option value="si-whatsapp">Sí, WhatsApp/Telegram</option>
+                                    <option value="no-seguro">No estoy seguro</option>
+                                    <option value="no">No, solo sitio web</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-gray-300 mb-1">
+                                Mensaje adicional <span class="text-gray-500">(opcional)</span>
+                            </label>
+                            <textarea 
+                                id="message" 
+                                name="message"
+                                rows="3"
+                                class="w-full bg-gray-700 border border-gray-600 rounded-md px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-cyan-400"
+                                placeholder="Cuéntanos más detalles específicos de tu proyecto..."
+                            ></textarea>
+                        </div>
+                        
+                        <button 
+                            type="submit"
+                            class="w-full bg-gradient-to-r from-blue-500 to-cyan-400 py-3 rounded-md font-medium hover:opacity-90 transition-opacity"
+                        >
+                            Enviar Mensaje
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 border-t border-gray-800 py-12">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-center mb-8">
+                <div class="h-12 w-12 relative overflow-hidden">
+                    <img src="iawebpro_logo_option1.png" alt="IAWebPro Logo" class="w-full h-full object-contain">
+                </div>
+                <span class="ml-3 text-2xl font-bold">
+                    <span class="text-white">IAWeb</span>
+                    <span class="text-cyan-400">Pro</span>
+                </span>
+            </div>
+            
+            <!-- Social Media Links -->
+            <div class="text-center mb-8">
+                <p class="text-gray-400 mb-4">Síguenos en redes sociales</p>
+                <div class="flex justify-center space-x-6">
+                    <!-- Instagram -->
+                    <a href="https://www.instagram.com/iawebpro?igsh=MTFjbGRpMzh3b3Bu" 
+                       target="_blank" 
+                       rel="noopener noreferrer"
+                       class="group flex items-center justify-center w-12 h-12 bg-gray-800 hover:bg-gradient-to-br hover:from-purple-500 hover:via-pink-500 hover:to-yellow-400 rounded-full transition-all duration-300 transform hover:scale-110">
+                        <svg class="w-6 h-6 text-gray-300 group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                        </svg>
+                    </a>
+                    
+                    <!-- Placeholder for future social media - uncomment if needed -->
+                    <!-- Facebook
+                    <a href="#" 
+                       target="_blank" 
+                       rel="noopener noreferrer"
+                       class="group flex items-center justify-center w-12 h-12 bg-gray-800 hover:bg-blue-600 rounded-full transition-all duration-300 transform hover:scale-110">
+                        <svg class="w-6 h-6 text-gray-300 group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                        </svg>
+                    </a>
+                    -->
+                    
+                    <!-- LinkedIn
+                    <a href="#" 
+                       target="_blank" 
+                       rel="noopener noreferrer"
+                       class="group flex items-center justify-center w-12 h-12 bg-gray-800 hover:bg-blue-700 rounded-full transition-all duration-300 transform hover:scale-110">
+                        <svg class="w-6 h-6 text-gray-300 group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                        </svg>
+                    </a>
+                    -->
+                </div>
+            </div>
+            
+            <div class="text-center text-gray-500">
+                <p>&copy; 2024 IAWebPro. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chatbot Widget -->
+    <div id="chatbot-container" class="fixed bottom-6 right-6 z-50">
+        <!-- Chat Button -->
+        <button id="chatbot-toggle" class="bg-gradient-to-r from-blue-500 to-cyan-400 text-white w-16 h-16 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 flex items-center justify-center group">
+            <svg id="chat-icon" class="w-8 h-8 transition-transform group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+            </svg>
+            <svg id="close-icon" class="w-8 h-8 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+            <!-- Notification dot -->
+            <div id="chat-notification" class="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full flex items-center justify-center">
+                <span class="text-xs text-white font-bold">!</span>
+            </div>
+        </button>
+
+        <!-- Chat Window -->
+        <div id="chatbot-window" class="hidden absolute bottom-20 right-0 w-80 h-96 bg-gray-800 rounded-xl shadow-2xl border border-gray-700 flex flex-col overflow-hidden">
+            <!-- Header -->
+            <div class="bg-gradient-to-r from-blue-500 to-cyan-400 p-4 text-white">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold">Asistente IA</h3>
+                        <p class="text-sm opacity-90">🟢 En línea 24/7</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Messages Area -->
+            <div id="chat-messages" class="flex-1 p-4 space-y-3 overflow-y-auto bg-gray-900">
+                <!-- Welcome message -->
+                <div class="flex items-start space-x-2">
+                    <div class="w-8 h-8 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-full flex items-center justify-center flex-shrink-0">
+                        <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                        </svg>
+                    </div>
+                    <div class="bg-gray-700 rounded-lg p-3 max-w-64 text-white text-sm">
+                        <p>¡Hola! 👋 Soy tu asistente de IAWebPro.</p>
+                        <p class="mt-1">¿Te puedo ayudar con información sobre nuestros servicios, precios o contacto?</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div id="quick-actions" class="p-3 border-t border-gray-700">
+                <p class="text-gray-400 text-xs mb-2">Preguntas frecuentes:</p>
+                <div class="grid grid-cols-2 gap-2">
+                    <button class="quick-btn bg-gray-700 hover:bg-gray-600 text-white text-xs p-2 rounded transition-colors" data-question="¿Qué servicios ofrecen?">
+                        🚀 Servicios
+                    </button>
+                    <button class="quick-btn bg-gray-700 hover:bg-gray-600 text-white text-xs p-2 rounded transition-colors" data-question="¿Cuáles son los precios?">
+                        💰 Precios
+                    </button>
+                    <button class="quick-btn bg-gray-700 hover:bg-gray-600 text-white text-xs p-2 rounded transition-colors" data-question="¿Cómo los contacto?">
+                        📞 Contacto
+                    </button>
+                    <button class="quick-btn bg-gray-700 hover:bg-gray-600 text-white text-xs p-2 rounded transition-colors" data-question="¿Tienen garantía?">
+                        ✅ Garantía
+                    </button>
+                </div>
+            </div>
+
+            <!-- Input Area -->
+            <div class="p-4 border-t border-gray-700">
+                <div class="flex space-x-2">
+                    <input 
+                        id="chat-input" 
+                        type="text" 
+                        placeholder="Escribe tu pregunta..."
+                        class="flex-1 bg-gray-700 border border-gray-600 rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:ring-2 focus:ring-cyan-400"
+                    />
+                    <button 
+                        id="send-btn" 
+                        class="bg-gradient-to-r from-blue-500 to-cyan-400 text-white px-4 py-2 rounded-lg hover:opacity-90 transition-opacity flex items-center justify-center"
+                    >
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Payment Modal -->
+    <div id="payment-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-gray-800 rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto border border-gray-700">
+            <!-- Modal Header -->
+            <div class="sticky top-0 bg-gradient-to-r from-blue-500 to-cyan-400 p-6 text-white rounded-t-xl">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <h3 class="text-2xl font-bold" id="payment-plan-title">Plan Seleccionado</h3>
+                        <p class="text-blue-100" id="payment-plan-price">Precio del plan</p>
+                    </div>
+                    <button id="close-payment-modal" class="text-white hover:text-blue-200 transition-colors">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Payment Options -->
+            <div class="p-6">
+                <!-- Billing Cycle Selection -->
+                <div class="mb-8">
+                    <h4 class="text-white text-lg font-semibold mb-4">Selecciona tu período de facturación:</h4>
+                    <div class="grid grid-cols-2 gap-4">
+                        <button id="monthly-billing" class="billing-option active bg-gray-700 border-2 border-cyan-400 text-white p-4 rounded-lg font-medium transition-all">
+                            <div class="text-lg">Mensual</div>
+                            <div class="text-cyan-400 font-bold" id="monthly-price">$49/mes</div>
+                        </button>
+                        <button id="yearly-billing" class="billing-option bg-gray-700 border border-gray-600 text-white p-4 rounded-lg font-medium transition-all hover:border-cyan-400">
+                            <div class="text-lg">Anual</div>
+                            <div class="text-green-400 font-bold" id="yearly-price">$499/año</div>
+                            <div class="text-xs text-green-400">¡Ahorra dinero!</div>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Payment Methods -->
+                <div>
+                    <h4 class="text-white text-lg font-semibold mb-6">🔐 Elige tu método de pago:</h4>
+                    
+                    <!-- Cryptocurrency Section -->
+                    <div class="mb-8">
+                        <h5 class="text-cyan-400 font-semibold mb-4 flex items-center">
+                            <span class="text-2xl mr-2">₿</span>
+                            Criptomonedas (Recomendado)
+                        </h5>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <button class="payment-method-btn bg-gray-700 hover:bg-orange-600 border border-gray-600 hover:border-orange-500 text-white p-4 rounded-lg transition-all" data-method="btc">
+                                <div class="text-2xl mb-1">₿</div>
+                                <div class="font-semibold">Bitcoin</div>
+                                <div class="text-xs text-gray-400">BTC</div>
+                            </button>
+                            <button class="payment-method-btn bg-gray-700 hover:bg-blue-600 border border-gray-600 hover:border-blue-500 text-white p-4 rounded-lg transition-all" data-method="usdc">
+                                <div class="text-2xl mb-1">🔵</div>
+                                <div class="font-semibold">USD Coin</div>
+                                <div class="text-xs text-gray-400">USDC (Solana)</div>
+                            </button>
+                            <button class="payment-method-btn bg-gray-700 hover:bg-yellow-600 border border-gray-600 hover:border-yellow-500 text-white p-4 rounded-lg transition-all" data-method="binance">
+                                <div class="text-2xl mb-1">🟡</div>
+                                <div class="font-semibold">Binance Pay</div>
+                                <div class="text-xs text-gray-400">Múltiples coins</div>
+                            </button>
+                        </div>
+                        <div class="mt-3 text-center">
+                            <p class="text-green-400 text-sm">✅ Sin comisiones extra • Procesamiento instantáneo</p>
+                        </div>
+                    </div>
+
+                    <!-- Traditional Payment Methods -->
+                    <div class="mb-8">
+                        <h5 class="text-blue-400 font-semibold mb-4 flex items-center">
+                            <span class="text-2xl mr-2">💳</span>
+                            Métodos Tradicionales
+                        </h5>
+                        <div class="text-center">
+                            <button class="payment-method-btn bg-gray-700 hover:bg-green-700 border border-gray-600 hover:border-green-500 text-white p-4 rounded-lg transition-all inline-flex items-center justify-center w-80" data-method="card">
+                                <div class="text-3xl mr-4">💳</div>
+                                <div>
+                                    <div class="font-semibold text-lg">Tarjeta Bancaria</div>
+                                    <div class="text-sm text-gray-400">Visa, MasterCard, Amex</div>
+                                    <div class="text-xs text-yellow-400 mt-1">🚧 Próximamente disponible</div>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Security Notice -->
+                    <div class="bg-gray-900 border border-gray-600 rounded-lg p-4 mb-6">
+                        <div class="flex items-center text-green-400 mb-2">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.99-4.99c-.4-.4-1.03-.4-1.43 0L12 10.59l-5.56-5.56c-.4-.4-1.03-.4-1.43 0s-.4 1.03 0 1.43L10.59 12l-5.58 5.58c-.4.4-.4 1.03 0 1.43s1.03.4 1.43 0L12 13.41l5.58 5.58c.4.4 1.03.4 1.43 0s.4-1.03 0-1.43L13.41 12l5.58-5.58c.4-.4.4-1.03 0-1.43z"></path>
+                            </svg>
+                            Pago 100% Seguro
+                        </div>
+                        <p class="text-gray-300 text-sm">
+                            • Procesamiento encriptado SSL<br>
+                            • Sin almacenamiento de datos de pago<br>
+                            • Garantía de reembolso 30 días
+                        </p>
+                    </div>
+
+                    <!-- Plan Details -->
+                    <div class="bg-gray-900 border border-gray-600 rounded-lg p-4 mb-6">
+                        <h6 class="text-white font-semibold mb-2">✨ Lo que obtienes:</h6>
+                        <div id="plan-features" class="text-gray-300 text-sm">
+                            <!-- Features will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="bg-gray-900 p-6 rounded-b-xl text-center border-t border-gray-700">
+                <p class="text-gray-400 text-sm mb-4">
+                    ¿Necesitas ayuda? Contacta nuestro soporte: <span class="text-cyan-400">u2331310679@gmail.com</span>
+                </p>
+                <button id="cancel-payment" class="bg-gray-600 hover:bg-gray-500 text-white px-6 py-2 rounded-md transition-colors">
+                    Cancelar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="supabase-config.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+{
+  "name": "iawebpro-website",
+  "version": "1.0.0",
+  "description": "Professional AI solutions website for IAWebPro",
+  "main": "index.html",
+  "scripts": {
+    "start": "python -m http.server 8000",
+    "dev": "npx serve .",
+    "build": "echo 'No build process needed - static HTML site'",
+    "deploy": "echo 'Ready for deployment to static hosting services'"
+  },
+  "keywords": [
+    "artificial-intelligence",
+    "ai-solutions",
+    "business-automation",
+    "virtual-assistants",
+    "predictive-analytics",
+    "web-development",
+    "static-website"
+  ],
+  "author": "IAWebPro",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/iawebpro/website.git"
+  },
+  "bugs": {
+    "url": "https://github.com/iawebpro/website/issues"
+  },
+  "homepage": "https://iawebpro.github.io/website",
+  "devDependencies": {
+    "serve": "^14.0.0"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

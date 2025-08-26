@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Panel - IAWebPro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        .progress-bar {
+            transition: width 0.3s ease;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white min-h-screen">
+    <!-- Header -->
+    <header class="bg-gray-800 border-b border-gray-700">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center">
+                    <img src="iawebpro_logo_option1.png" alt="IAWebPro" class="h-10 w-10 rounded-full">
+                    <h1 class="ml-3 text-xl font-bold">
+                        <span class="text-white">IAWeb</span><span class="text-cyan-400">Pro</span>
+                    </h1>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="text-right">
+                        <p class="text-sm text-gray-400">Bienvenido,</p>
+                        <p class="font-semibold" id="client-name">Cargando...</p>
+                    </div>
+                    <button id="logout-btn" class="bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded-md transition-colors">
+                        Salir
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Welcome Banner -->
+        <div class="bg-gradient-to-r from-blue-600 to-cyan-500 rounded-xl p-8 mb-8">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h2 class="text-2xl font-bold mb-2">¡Bienvenido a tu Panel de Control!</h2>
+                    <p class="text-blue-100">Aquí puedes seguir el progreso de tu proyecto y acceder a todos tus servicios.</p>
+                </div>
+                <div class="hidden md:block">
+                    <div class="w-20 h-20 bg-white bg-opacity-20 rounded-full flex items-center justify-center">
+                        <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Plan Info & Status -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
+            <!-- Plan Details -->
+            <div class="lg:col-span-2 bg-gray-800 rounded-xl p-6 border border-gray-700">
+                <div class="flex items-center justify-between mb-6">
+                    <h3 class="text-xl font-bold">Mi Plan Actual</h3>
+                    <span id="plan-status" class="px-3 py-1 bg-green-400 text-gray-900 rounded-full text-sm font-semibold">
+                        Activo
+                    </span>
+                </div>
+                
+                <div class="mb-6">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="font-semibold text-lg" id="plan-name">Cargando plan...</span>
+                        <span class="text-2xl font-bold text-cyan-400" id="plan-price">$0/mes</span>
+                    </div>
+                    <p class="text-gray-400" id="plan-description">Cargando descripción...</p>
+                </div>
+
+                <!-- Project Progress -->
+                <div class="mb-6">
+                    <div class="flex justify-between items-center mb-2">
+                        <h4 class="font-semibold">Progreso del Proyecto</h4>
+                        <span class="text-sm text-cyan-400" id="progress-percentage">0%</span>
+                    </div>
+                    <div class="w-full bg-gray-700 rounded-full h-2">
+                        <div id="progress-bar" class="progress-bar bg-gradient-to-r from-blue-500 to-cyan-400 h-2 rounded-full" style="width: 0%"></div>
+                    </div>
+                    <p class="text-sm text-gray-400 mt-2" id="progress-status">Iniciando proyecto...</p>
+                </div>
+
+                <!-- Plan Features -->
+                <div>
+                    <h4 class="font-semibold mb-3">Servicios Incluidos</h4>
+                    <div id="plan-features" class="space-y-2">
+                        <!-- Features will be loaded here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Account Info -->
+            <div class="space-y-6">
+                <!-- Account Status -->
+                <div class="bg-gray-800 rounded-xl p-6 border border-gray-700">
+                    <h3 class="text-lg font-bold mb-4">Estado de la Cuenta</h3>
+                    <div class="space-y-3">
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">Próximo Pago:</span>
+                            <span id="next-payment" class="text-white">--</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">Método de Pago:</span>
+                            <span id="payment-method" class="text-white">--</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">Cliente desde:</span>
+                            <span id="member-since" class="text-white">--</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="bg-gray-800 rounded-xl p-6 border border-gray-700">
+                    <h3 class="text-lg font-bold mb-4">Acciones Rápidas</h3>
+                    <div class="space-y-3">
+                        <button id="contact-support-btn" class="w-full bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-md transition-colors flex items-center justify-center">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 7.89a2 2 0 002.83 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                            </svg>
+                            Contactar Soporte
+                        </button>
+                        <button id="upgrade-plan-btn" class="w-full bg-cyan-600 hover:bg-cyan-700 px-4 py-2 rounded-md transition-colors flex items-center justify-center">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                            </svg>
+                            Mejorar Plan
+                        </button>
+                        <button id="view-invoices-btn" class="w-full bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded-md transition-colors flex items-center justify-center">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                            </svg>
+                            Ver Facturas
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project Timeline -->
+        <div class="bg-gray-800 rounded-xl p-6 border border-gray-700 mb-8">
+            <h3 class="text-xl font-bold mb-6">Cronograma del Proyecto</h3>
+            <div id="project-timeline" class="space-y-4">
+                <!-- Timeline items will be loaded here -->
+            </div>
+        </div>
+
+        <!-- Services Dashboard -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+            <!-- Website Service -->
+            <div class="bg-gray-800 rounded-xl p-6 border border-gray-700">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="font-bold">Sitio Web</h3>
+                    <span class="w-3 h-3 bg-green-400 rounded-full" id="website-status"></span>
+                </div>
+                <p class="text-gray-400 text-sm mb-4">Tu página web profesional con IA integrada</p>
+                <div class="space-y-2">
+                    <button id="preview-website-btn" class="w-full bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-md transition-colors text-sm">
+                        Ver Sitio Web
+                    </button>
+                    <button id="edit-website-btn" class="w-full bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded-md transition-colors text-sm">
+                        Solicitar Cambios
+                    </button>
+                </div>
+            </div>
+
+            <!-- Chatbot Service -->
+            <div class="bg-gray-800 rounded-xl p-6 border border-gray-700">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="font-bold">Chatbot IA</h3>
+                    <span class="w-3 h-3 bg-yellow-400 rounded-full" id="chatbot-status"></span>
+                </div>
+                <p class="text-gray-400 text-sm mb-4">Asistente inteligente para tus clientes 24/7</p>
+                <div class="space-y-2">
+                    <button id="test-chatbot-btn" class="w-full bg-purple-600 hover:bg-purple-700 px-4 py-2 rounded-md transition-colors text-sm">
+                        Probar Chatbot
+                    </button>
+                    <button id="train-chatbot-btn" class="w-full bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded-md transition-colors text-sm">
+                        Entrenar IA
+                    </button>
+                </div>
+            </div>
+
+            <!-- Marketing Service -->
+            <div class="bg-gray-800 rounded-xl p-6 border border-gray-700">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="font-bold">Marketing IA</h3>
+                    <span class="w-3 h-3 bg-green-400 rounded-full" id="marketing-status"></span>
+                </div>
+                <p class="text-gray-400 text-sm mb-4">Contenido automático para redes sociales</p>
+                <div class="space-y-2">
+                    <button id="view-posts-btn" class="w-full bg-pink-600 hover:bg-pink-700 px-4 py-2 rounded-md transition-colors text-sm">
+                        Ver Posts del Mes
+                    </button>
+                    <button id="request-content-btn" class="w-full bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded-md transition-colors text-sm">
+                        Solicitar Contenido
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Activity -->
+        <div class="bg-gray-800 rounded-xl p-6 border border-gray-700">
+            <h3 class="text-xl font-bold mb-6">Actividad Reciente</h3>
+            <div id="recent-activity" class="space-y-4">
+                <!-- Activity items will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Support Modal -->
+    <div id="support-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-gray-800 rounded-xl max-w-2xl w-full border border-gray-700">
+            <div class="p-6 border-b border-gray-700">
+                <div class="flex justify-between items-center">
+                    <h3 class="text-xl font-bold">Contactar Soporte</h3>
+                    <button id="close-support-modal" class="text-gray-400 hover:text-white">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            
+            <form id="support-form" class="p-6 space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-300 mb-1">Tipo de Consulta</label>
+                    <select id="support-type" class="w-full bg-gray-700 border border-gray-600 rounded-md px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-cyan-400">
+                        <option value="technical">Soporte Técnico</option>
+                        <option value="billing">Facturación</option>
+                        <option value="feature">Solicitud de Función</option>
+                        <option value="feedback">Comentarios</option>
+                        <option value="other">Otro</option>
+                    </select>
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-300 mb-1">Asunto</label>
+                    <input type="text" id="support-subject" class="w-full bg-gray-700 border border-gray-600 rounded-md px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-cyan-400" placeholder="Describe brevemente tu consulta">
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-300 mb-1">Mensaje</label>
+                    <textarea id="support-message" rows="5" class="w-full bg-gray-700 border border-gray-600 rounded-md px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-cyan-400" placeholder="Describe tu consulta en detalle..."></textarea>
+                </div>
+                
+                <div class="flex justify-end space-x-4 pt-4">
+                    <button type="button" id="cancel-support" class="bg-gray-600 hover:bg-gray-500 px-6 py-2 rounded-md transition-colors">
+                        Cancelar
+                    </button>
+                    <button type="submit" class="bg-blue-600 hover:bg-blue-700 px-6 py-2 rounded-md transition-colors">
+                        Enviar Consulta
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="supabase-config.js"></script>
+    <script src="client-panel.js"></script>
+</body>
+</html>
