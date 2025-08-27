@@ -134,12 +134,13 @@ document.addEventListener('DOMContentLoaded', function() {
         const company = formData.get('company') || 'No especificada';
         const businessType = formData.get('business-type');
         const websiteGoal = formData.get('website-goal');
+        const servicesInterest = formData.get('services-interest');
         const budget = formData.get('budget');
         const automation = formData.get('automation');
         const message = formData.get('message') || 'Sin mensaje adicional';
         
         // Simple validation
-        if (!name || !email || !businessType || !websiteGoal || !budget || !automation) {
+        if (!name || !email || !businessType || !websiteGoal || !servicesInterest || !budget || !automation) {
             alert('Por favor, completa todos los campos obligatorios marcados con *');
             return;
         }
@@ -154,11 +155,12 @@ document.addEventListener('DOMContentLoaded', function() {
         // Get display values for selects
         const businessTypeText = getSelectText('business-type', businessType);
         const websiteGoalText = getSelectText('website-goal', websiteGoal);
+        const servicesInterestText = getSelectText('services-interest', servicesInterest);
         const budgetText = getSelectText('budget', budget);
         const automationText = getSelectText('automation', automation);
         
-        // Determine recommended plan based on answers
-        const recommendedPlan = getRecommendedPlan(budget, automation, websiteGoal);
+        // Create personalized recommendation
+        const recommendedApproach = getPersonalizedApproach(budget, automation, websiteGoal, servicesInterest);
         
         // Show loading state
         const submitButton = contactForm.querySelector('button[type="submit"]');
@@ -212,11 +214,12 @@ DATOS DEL CLIENTE:
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 🏭 Tipo de Negocio: ${businessTypeText}
 🎯 Objetivo Web: ${websiteGoalText}
+🎨 Servicio de Interés: ${servicesInterestText}
 💰 Presupuesto: ${budgetText}
 🤖 Automatización: ${automationText}
 
-💡 RECOMENDACIÓN AUTOMÁTICA: ${recommendedPlan.name}
-${recommendedPlan.reason}
+💡 ENFOQUE RECOMENDADO: ${recommendedApproach.approach}
+${recommendedApproach.reason}
 
 ${leadSaved ? '💾 LEAD GUARDADO EN BASE DE DATOS: ✅ Sí' : '💾 LEAD GUARDADO EN BASE DE DATOS: ❌ Error (revisar configuración)'}
 
@@ -262,83 +265,73 @@ Sistema de contacto IAWebPro`);
         return option ? option.textContent : value;
     }
 
-    // Helper function to recommend plan based on answers
-    function getRecommendedPlan(budget, automation, goal) {
-        let score = {
-            'web-autonoma': 0,
-            'automatico-pro': 0,
-            'crecimiento-total': 0
-        };
+    // Helper function to provide personalized approach based on answers
+    function getPersonalizedApproach(budget, automation, goal, service) {
+        let approach = "Solución Personalizada";
+        let features = [];
         
-        // Budget scoring
-        if (budget === 'menos-50' || budget === '50-100') {
-            score['web-autonoma'] += 3;
-            score['automatico-pro'] += 1;
-        } else if (budget === '100-200') {
-            score['web-autonoma'] += 2;
-            score['automatico-pro'] += 3;
-            score['crecimiento-total'] += 1;
-        } else if (budget === '200-500') {
-            score['automatico-pro'] += 2;
-            score['crecimiento-total'] += 3;
-        } else if (budget === 'mas-500') {
-            score['crecimiento-total'] += 3;
+        // Determine primary service approach
+        if (service === 'web-completa') {
+            approach = "Página Web Profesional Completa";
+            features.push("Sitio web responsive con diseño profesional");
+            features.push("Integración de métodos de pago (USDT, PayPal, Stripe)");
+        } else if (service === 'landing-estrategica') {
+            approach = "Landing Page Estratégica";
+            features.push("Página optimizada para conversiones");
+            features.push("Integración con email marketing y campañas");
+        } else if (service === 'chatbots') {
+            approach = "Chatbots Inteligentes";
+            features.push("Automatización multicanal (WhatsApp, Facebook, Instagram)");
+            features.push("Respuestas automáticas 24/7 con flujos de venta");
+        } else if (service === 'automatizacion') {
+            approach = "Automatización Multicanal";
+            features.push("Centralización de mensajería en un solo sistema");
+            features.push("Seguimiento y recordatorios automáticos");
+        } else if (service === 'contenido-digital') {
+            approach = "Creación de Contenido Digital";
+            features.push("Posts profesionales para redes sociales");
+            features.push("Plantillas personalizadas y estrategia visual");
+        } else if (service === 'paquete-completo') {
+            approach = "Paquete Completo de Servicios";
+            features.push("Combinación de múltiples servicios digitales");
+            features.push("Solución integral para presencia digital completa");
         }
         
-        // Automation scoring
-        if (automation === 'si-completa') {
-            score['automatico-pro'] += 2;
-            score['crecimiento-total'] += 3;
-        } else if (automation === 'si-basica' || automation === 'si-whatsapp') {
-            score['web-autonoma'] += 1;
-            score['automatico-pro'] += 3;
-            score['crecimiento-total'] += 1;
-        } else if (automation === 'no-seguro') {
-            score['automatico-pro'] += 2;
-        } else if (automation === 'no') {
-            score['web-autonoma'] += 3;
-        }
-        
-        // Goal scoring
+        // Add additional features based on goal
         if (goal === 'vender' || goal === 'leads') {
-            score['automatico-pro'] += 2;
-            score['crecimiento-total'] += 2;
+            features.push("Sistema de captación de leads optimizado");
+            features.push("Integración con herramientas de ventas");
         } else if (goal === 'reservas') {
-            score['automatico-pro'] += 3;
-            score['crecimiento-total'] += 2;
+            features.push("Sistema de reservas automatizado");
+            features.push("Calendario integrado con notificaciones");
         } else if (goal === 'informacion' || goal === 'branding') {
-            score['web-autonoma'] += 2;
-            score['automatico-pro'] += 1;
+            features.push("Diseño enfocado en imagen de marca");
+            features.push("Contenido optimizado para SEO");
         }
         
-        // Find highest score
-        let recommendedPlan = 'web-autonoma';
-        let maxScore = score['web-autonoma'];
-        
-        for (let plan in score) {
-            if (score[plan] > maxScore) {
-                maxScore = score[plan];
-                recommendedPlan = plan;
-            }
+        // Add automation features
+        if (automation === 'si-completa') {
+            features.push("Automatización avanzada con IA");
+            features.push("Integración completa WhatsApp/Telegram");
+        } else if (automation === 'si-basica' || automation === 'si-whatsapp') {
+            features.push("Chatbot básico personalizado");
+            features.push("Conexión WhatsApp/Telegram");
         }
         
-        // Return recommendation with explanation
-        const plans = {
-            'web-autonoma': {
-                name: '🌟 Web Autónoma ($49/mes)',
-                reason: '✅ Perfecto para: Presupuesto ajustado, necesidades básicas, primera página web\n✅ Incluye: Landing page + chatbot básico + WhatsApp'
-            },
-            'automatico-pro': {
-                name: '🚀 Automático Pro ($97/mes) - MÁS POPULAR',
-                reason: '✅ Perfecto para: Automatización de ventas, captar leads, crecimiento activo\n✅ Incluye: Todo lo anterior + marketing automático + sistema de citas'
-            },
-            'crecimiento-total': {
-                name: '👑 Crecimiento Total ($247/mes) - PREMIUM',
-                reason: '✅ Perfecto para: Empresas establecidas, necesidades complejas, soporte premium\n✅ Incluye: Sitio completo + IA avanzada + entrenamiento personalizado'
-            }
+        // Budget consideration
+        let budgetNote = "";
+        if (budget === 'menos-50') {
+            budgetNote = "Solución económica pero efectiva";
+        } else if (budget === 'mas-500') {
+            budgetNote = "Solución premium con todas las funcionalidades";
+        } else {
+            budgetNote = "Solución balanceada precio-funcionalidad";
+        }
+        
+        return {
+            approach: approach,
+            reason: `✅ Enfoque: ${approach}\n✅ ${budgetNote}\n✅ Incluye: ${features.join(' + ')}\n✅ ${features.length > 0 ? 'Personalización según tus necesidades específicas' : 'Funcionalidades adicionales según necesidad'}`
         };
-        
-        return plans[recommendedPlan];
     }
 
     // Scroll-based animations (optional enhancement)
@@ -369,11 +362,11 @@ Sistema de contacto IAWebPro`);
                 if (this.textContent.includes('Demo')) {
                     alert('¡Gracias por tu interés! Pronto nos pondremos en contacto para programar tu demo personalizada.');
                 } else if (this.textContent.includes('Empezar')) {
-                    // Scroll to pricing section
-                    const pricingSection = document.getElementById('precios');
-                    if (pricingSection) {
+                    // Scroll to contact section
+                    const contactSection = document.getElementById('contacto');
+                    if (contactSection) {
                         const headerHeight = document.querySelector('header').offsetHeight;
-                        const targetPosition = pricingSection.offsetTop - headerHeight - 20;
+                        const targetPosition = contactSection.offsetTop - headerHeight - 20;
                         
                         window.scrollTo({
                             top: targetPosition,
@@ -385,37 +378,6 @@ Sistema de contacto IAWebPro`);
         }
     });
 
-    // Plan selection buttons
-    const planButtons = document.querySelectorAll('section#precios button');
-    planButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const planName = this.closest('.rounded-xl').querySelector('h3').textContent;
-            
-            if (this.textContent.includes('Contactar')) {
-                // Scroll to contact section
-                const contactSection = document.getElementById('contacto');
-                if (contactSection) {
-                    const headerHeight = document.querySelector('header').offsetHeight;
-                    const targetPosition = contactSection.offsetTop - headerHeight - 20;
-                    
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: 'smooth'
-                    });
-                    
-                    // Pre-fill the message
-                    setTimeout(() => {
-                        const messageField = document.getElementById('message');
-                        if (messageField) {
-                            messageField.value = `Hola, estoy interesado en el plan ${planName}. Me gustaría obtener más información sobre precios y características personalizadas.`;
-                        }
-                    }, 500);
-                }
-            } else {
-                alert(`¡Excelente elección! Has seleccionado el plan ${planName}. Te contactaremos pronto para procesar tu solicitud.`);
-            }
-        });
-    });
 
     // Add some CSS classes for animations
     const style = document.createElement('style');
@@ -483,28 +445,29 @@ Sistema de contacto IAWebPro`);
             keywords: ['servicio', 'servicios', 'que hacen', 'ofrecen', 'productos', 'soluciones'],
             responses: [
                 {
-                    text: "¡Ofrecemos 4 servicios principales de IA para emprendedores:",
+                    text: "¡Ofrecemos 5 servicios digitales profesionales:",
                     options: [
-                        "🌐 **Página Web Inteligente** - Sitios con chat de IA integrado",
-                        "💬 **Atención Automática WhatsApp** - Chatbots que toman pedidos 24/7", 
-                        "⭐ **Marketing con IA** - Posts automáticos para redes sociales",
-                        "📋 **Gestión Inteligente** - Organización de clientes y seguimiento"
+                        "🌐 **Páginas Web Profesionales** - Sitios completos con pagos integrados",
+                        "⚡ **Landing Pages Estratégicas** - Páginas enfocadas en conversión", 
+                        "🤖 **Chatbots Inteligentes** - Automatización 24/7 multicanal",
+                        "🔗 **Automatización Multicanal** - Centralización de mensajería",
+                        "🎨 **Contenido Digital** - Posts y estrategia visual de marca"
                     ],
                     followUp: "¿Te interesa algún servicio en particular?"
                 }
             ]
         },
         precios: {
-            keywords: ['precio', 'precios', 'costo', 'costos', 'cuanto cuesta', 'planes', 'tarifas'],
+            keywords: ['precio', 'precios', 'costo', 'costos', 'cuanto cuesta', 'planes', 'tarifas', 'cotización', 'cotizacion'],
             responses: [
                 {
-                    text: "Tenemos 3 planes adaptados a cada etapa de tu negocio:",
+                    text: "Nuestros precios son personalizados según las necesidades de cada cliente:",
                     options: [
-                        "🚀 **Web Autónoma** - $49/mes o $499/año",
-                        "🏆 **Automático Pro** - $97/mes o $997/año (MÁS POPULAR)",
-                        "👑 **Crecimiento Total** - $247/mes o Plan Personalizado"
+                        "💼 **Solución Personalizada** - Adaptada a tu negocio específico",
+                        "📋 **Análisis Gratuito** - Evaluamos tu proyecto sin compromiso",
+                        "🎯 **Propuesta a Medida** - Te enviamos una cotización detallada"
                     ],
-                    followUp: "¿Quieres saber qué incluye cada plan específicamente?"
+                    followUp: "¿Te gustaría llenar nuestro formulario para recibir una propuesta personalizada?"
                 }
             ]
         },
@@ -514,11 +477,11 @@ Sistema de contacto IAWebPro`);
                 {
                     text: "¡Perfecto! Puedes contactarnos de varias formas:",
                     options: [
-                        "📧 **Formulario Web** - Llena el formulario y te contactamos en 24h",
+                        "📧 **Formulario Web** - Llena el formulario para una propuesta personalizada",
                         "📱 **Instagram** - Síguenos @iawebpro",
                         "📞 **Email Directo** - u2331310679@gmail.com"
                     ],
-                    followUp: "¿Prefieres que te contactemos nosotros o quieres más información primero?"
+                    followUp: "Te recomendamos usar nuestro formulario para que podamos preparar una propuesta exacta para tu negocio."
                 }
             ]
         },
@@ -532,7 +495,7 @@ Sistema de contacto IAWebPro`);
                         "🔄 **Soporte incluido** - En todos los planes",
                         "🎯 **Resultados garantizados** - O ajustamos sin costo"
                     ],
-                    followUp: "¿Te gustaría empezar con nuestro plan más popular?"
+                    followUp: "¿Te gustaría contactarnos para una consulta personalizada?"
                 }
             ]
         }
@@ -554,40 +517,40 @@ Sistema de contacto IAWebPro`);
         // Check for specific service inquiries
         if (message.includes('web') || message.includes('página') || message.includes('sitio')) {
             return {
-                text: "¡Excelente! Nuestro servicio de **Páginas Web Inteligentes** incluye:",
+                text: "¡Excelente! Nuestro servicio de **Páginas Web Profesionales** incluye:",
                 options: [
-                    "🌐 Diseño profesional y moderno",
-                    "🤖 Chat de IA integrado que responde 24/7",
-                    "📱 Totalmente responsive (móvil y desktop)",
-                    "⚡ Optimización para conversiones"
+                    "🌐 Sitios completos para empresas y emprendimientos",
+                    "📱 Diseño responsivo optimizado para móviles",
+                    "💳 Formularios de contacto y métodos de pago (USDT, PayPal, Stripe)",
+                    "⚡ Optimización para conversiones y SEO"
                 ],
-                followUp: "¿Te gustaría ver nuestros planes de precios?"
+                followUp: "¿Te gustaría llenar nuestro formulario para recibir una cotización personalizada?"
             };
         }
 
-        if (message.includes('whatsapp') || message.includes('telegram')) {
+        if (message.includes('whatsapp') || message.includes('telegram') || message.includes('chatbot')) {
             return {
-                text: "¡Perfecto! Nuestro **Chatbot para WhatsApp/Telegram** puede:",
+                text: "¡Perfecto! Nuestros **Chatbots Inteligentes** ofrecen:",
                 options: [
-                    "📅 Agendar citas automáticamente",
-                    "💰 Enviar precios y catálogos",
-                    "🛒 Tomar pedidos las 24 horas",
-                    "❓ Responder preguntas frecuentes"
+                    "📱 Integración con WhatsApp, web, Facebook e Instagram",
+                    "🤖 Respuesta automática 24/7 sin intervención",
+                    "🔗 Redirección automática a enlaces clave (tienda, redes)",
+                    "💼 Flujos simples de ventas y atención al cliente"
                 ],
-                followUp: "¿Tu negocio recibe muchas consultas por WhatsApp?"
+                followUp: "¿Te gustaría automatizar la atención en múltiples plataformas?"
             };
         }
 
-        if (message.includes('marketing') || message.includes('redes sociales') || message.includes('instagram')) {
+        if (message.includes('marketing') || message.includes('redes sociales') || message.includes('instagram') || message.includes('contenido')) {
             return {
-                text: "¡Genial! Nuestro **Asistente de Marketing con IA** te ayuda con:",
+                text: "¡Genial! Nuestro servicio de **Contenido Digital** incluye:",
                 options: [
-                    "📸 Posts automáticos para Instagram/TikTok",
-                    "📧 Emails persuasivos y profesionales",
-                    "📝 Descripciones de productos irresistibles",
-                    "🎯 Contenido adaptado a tu audiencia"
+                    "🎨 Posts atractivos para redes sociales con diseño profesional",
+                    "📄 Plantillas personalizadas listas para usar",
+                    "🎯 Estrategia visual alineada con tu identidad de marca",
+                    "📈 Contenido optimizado para engagement y conversiones"
                 ],
-                followUp: "¿Cuánto tiempo gastas creando contenido actualmente?"
+                followUp: "¿Te gustaría mantener una presencia visual consistente en todas tus redes?"
             };
         }
 
@@ -600,12 +563,40 @@ Sistema de contacto IAWebPro`);
             }
         }
 
+        // Check for landing page inquiries
+        if (message.includes('landing') || message.includes('campaña') || message.includes('conversion')) {
+            return {
+                text: "¡Perfecto! Nuestras **Landing Pages Estratégicas** son ideales para:",
+                options: [
+                    "🎯 Páginas rápidas enfocadas en un solo objetivo",
+                    "💼 Captar clientes, vender productos o generar inscripciones",
+                    "📧 Integración con email marketing y chatbots",
+                    "📊 Optimizadas para campañas publicitarias y lanzamientos"
+                ],
+                followUp: "¿Tienes una campaña o producto específico que quieres promocionar?"
+            };
+        }
+
+        // Check for automation inquiries
+        if (message.includes('automatización') || message.includes('centralizar') || message.includes('multicanal')) {
+            return {
+                text: "¡Excelente! Nuestra **Automatización Multicanal** te permite:",
+                options: [
+                    "🔗 Centralizar WhatsApp, Messenger e Instagram en un sistema",
+                    "⏰ Recordatorios y seguimiento automático de clientes",
+                    "📊 Gestión unificada de todas tus conversaciones",
+                    "🤖 Respuestas automáticas coordinadas en todas las plataformas"
+                ],
+                followUp: "¿Actualmente manejas clientes en varias plataformas por separado?"
+            };
+        }
+
         // Default intelligent response
         return {
             text: "Entiendo tu consulta. Te puedo ayudar con:",
             options: [
-                "🚀 **Servicios** - Páginas web, WhatsApp, Marketing IA",
-                "💰 **Precios** - Planes desde $49/mes",
+                "🚀 **Servicios** - Web, Landing Pages, Chatbots, Automatización, Contenido",
+                "💰 **Cotización** - Propuesta personalizada para tu negocio",
                 "📞 **Contacto** - Formas de comunicarnos"
             ],
             followUp: "¿Sobre cuál te gustaría saber más?"
