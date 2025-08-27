@@ -1,0 +1,20 @@
+User-agent: *
+Allow: /
+
+# Permitir acceso a todos los recursos importantes
+Allow: /index.html
+Allow: /script.js
+Allow: /iawebpro_logo_option1.png
+Allow: /BINANCEPAY.jpg
+
+# Bloquear archivos de configuración sensibles
+Disallow: /.claude/
+Disallow: /supabase-config.js
+Disallow: /package.json
+
+# Sitemap
+Sitemap: https://iawebpro.github.io/sitemap.xml
+
+# Información adicional para motores de búsqueda
+# Sitio optimizado para: servicios digitales, páginas web, chatbots, automatización
+# Última actualización: 2024

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <!-- Página principal -->
+  <url>
+    <loc>https://iawebpro.github.io/</loc>
+    <lastmod>2024-08-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  
+  <!-- Página principal (index.html) -->
+  <url>
+    <loc>https://iawebpro.github.io/index.html</loc>
+    <lastmod>2024-08-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  
+  <!-- Panel de administración -->
+  <url>
+    <loc>https://iawebpro.github.io/admin-dashboard.html</loc>
+    <lastmod>2024-08-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  
+  <!-- Panel de cliente -->
+  <url>
+    <loc>https://iawebpro.github.io/client-panel.html</loc>
+    <lastmod>2024-08-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  
+  <!-- Página de agradecimiento -->
+  <url>
+    <loc>https://iawebpro.github.io/gracias.html</loc>
+    <lastmod>2024-08-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+</urlset>
